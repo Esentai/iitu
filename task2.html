@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <style>
+    body {
+      background-color: #f5f5f5;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .container {
+      max-width: 420px;
+      margin: 100px auto;
+      background-color: #fff;
+      padding: 10px 40px 30px 40px;
+    }
+
+    input {
+      width: 96%;
+      height: 25px;
+      padding: 0 5px;
+    }
+
+    label {
+      margin: 15px 0 4px;
+      display: block;
+      font-size: 18px;
+    }
+
+    button {
+      width: 100%;
+      color: #fff;
+      background-color: #1d3c8c;
+      border: none;
+      outline: none;
+      height: 40px;
+      font-size: 20px;
+      margin: 15px 0;
+    }
+
+    button:hover {
+      background-color: #132c6b;
+
+    }
+
+    h2 {
+      text-align: center;
+      display: block;
+    }
+
+    h3 {
+      text-align: center;
+      font-size: 26px;
+    }
+
+    .navBtn {
+      position: absolute;
+      left: 15px;
+      top: 15px;
+      padding: 8px 35px;
+      border-radius: 10px;
+      text-decoration: none;
+      color: #fff;
+      background-color: #1d3c8c;
+    }
+
+    .btn2 {
+      left: 140px;
+    }
+  </style>
+</head>
+
+<body>
+  <a class="navBtn" href="task1.html">Task 1</a>
+  <a class="navBtn btn2" href="task3.html">Task 3</a>
+  <div class="container">
+    <h2>Timer</h2>
+    <input type="text" id="count">
+    <button onclick="start()">Start</button>
+    <h3 id="result"></h3>
+  </div>
+  <script>
+    let time = 0;
+    let res = document.getElementById("result");
+    function start() {
+      time = document.getElementById("count").value;
+      time = parseFloat(time) * 60
+      setTimeout(isTimeFunc, 1000);
+    }
+    function isTimeFunc() {
+      time--;
+      res.innerHTML = `${Math.floor(time / 60)} : ${time % 60}`
+      if (time == 0) {
+        alert('Done!');
+        return;
+      }
+      else {
+        setTimeout(isTimeFunc, 1000);
+      }
+      if (time < 10) {
+        res.style.color = "red";
+      }
+    }
+
+  </script>
+</body>
+
+</html>

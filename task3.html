@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f5f5f5;
+    }
+
+    .navBtn {
+      position: absolute;
+      left: 15px;
+      top: 15px;
+      padding: 8px 35px;
+      border-radius: 10px;
+      text-decoration: none;
+      color: #fff;
+      background-color: #1d3c8c;
+    }
+
+    .btn2 {
+      left: 140px;
+    }
+
+    .navBtn:hover {
+      background-color: #132c6b;
+    }
+
+    .mainContent {
+      width: 600px;
+      margin: 40px auto;
+      border: 1px #ccc solid;
+    }
+
+    .header {
+      position: relative;
+      padding: 20px 20px;
+      background: #F7F7F7;
+      border-bottom: 1px #ccc solid;
+    }
+
+    .header h1 {
+      color: #1d3c8c;
+      margin: 0;
+      padding: 0;
+    }
+
+    .header p {
+      font-size: 22px;
+      margin: 5px 5px;
+      color: #C2C3D1
+    }
+
+    #wishesCount {
+      color: #C2C3D1;
+      position: absolute;
+      right: 20px;
+      top: 40px;
+    }
+
+    .main {
+      background-color: #fff;
+
+    }
+
+    .addWish {
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+      border-bottom: 1px #f5f5f5 solid;
+    }
+
+    .addWish input {
+      width: 70%;
+      height: 35px;
+      font-size: 15px;
+      padding: 0 8px;
+      border: #1d3c8c solid 2px;
+    }
+
+    .addWish button {
+      width: 30%;
+      height: 39px;
+      background-color: #1d3c8c;
+      border: none;
+      outline: none;
+      color: #f5f5f5;
+      font-size: 15px;
+    }
+
+    ::placeholder {
+      color: #1d3c8c;
+    }
+
+
+    .error {
+      position: relative;
+      animation: shake .1s linear;
+      animation-iteration-count: 3;
+    }
+
+    @keyframes shake {
+      0% {
+        left: -3px;
+      }
+      100% {
+        right: -3px;
+      }
+    }
+
+    ul {
+      list-style-type: none;
+      padding: 0
+    }
+
+    li {
+      padding: 15px 20px;
+      border-bottom: 1px #f5f5f5 solid;
+      font-size: 20px;
+      display: flex
+    }
+
+    li button {
+      width: 100px;
+      height: 30px;
+      background-color: #1d3c8c;
+      color: #fff;
+      border: none;
+      outline: none;
+      margin-left: 5px;
+      float: right;
+    }
+
+    li span {
+      display: block;
+      width: 63%;
+      overflow: hidden;
+    }
+
+    li input {
+      width: 55%;
+      height: 25px;
+      padding: 0 10px;
+    }
+
+    .search {
+      width: 95%;
+      height: 30px;
+      padding: 0 10px;
+      font-size: 16px;
+      margin: 10px 0;
+    }
+  </style>
+</head>
+
+<body>
+  <a class="navBtn" href="task1.html">Task 1</a>
+  <a class="navBtn btn2" href="task2.html">Task 2</a>
+  <div class="mainContent">
+    <div class="header">
+      <h1 align="center">Task for today</h1>
+      <div class="addWish" id="addWish">
+
+        <input type="text" id="item" placeholder="Add wish here">
+        <button>Add wish</button>
+        <br>
+
+      </div>
+      <input id="check" type="checkbox" onclick="checkFunc()">
+      <span>Hide</span>
+    </div>
+    <div class="main">
+
+      <input class="search" onkeyup="searchFunction()" type="text" id="search" placeholder="Search for tasks">
+      <div id="sList" class="showWishes">
+        <ul></ul>
+      </div>
+    </div>
+  </div>
+  <script>
+
+    const list = document.querySelector('ul');
+    const input = document.querySelector('input');
+    const button = document.querySelector('button');
+
+    function searchFunction() {
+      var input, filter, ul, li, a, i, txtValue;
+      input = document.getElementById("search");
+      filter = input.value.toUpperCase();
+      ul = document.querySelector('ul');
+      li = ul.getElementsByTagName("li");
+      for (i = 0; i < li.length; i++) {
+        a = li[i];
+        txtValue = a.textContent || a.innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+          li[i].style.display = "";
+        } else {
+          li[i].style.display = "none";
+        }
+      }
+    }
+
+
+    function checkFunc() {
+      if (document.getElementById("check").checked) {
+        document.getElementById("sList").style.display = "none";
+      } else {
+        document.getElementById("sList").style.display = "block";
+      }
+    }
+    button.onclick = function () {
+      if (input.value) {
+        let myItem = input.value;
+        input.value = '';
+
+
+        const listItem = document.createElement('li');
+        const listText = document.createElement('span');
+        const listBtn = document.createElement('button');
+        const listEdit = document.createElement('button');
+
+        listItem.appendChild(listText);
+        listText.textContent = myItem;
+        listItem.appendChild(listBtn);
+        listBtn.textContent = 'Delete';
+        listItem.appendChild(listEdit);
+        listEdit.textContent = 'Edit';
+
+        list.appendChild(listItem);
+
+        listBtn.onclick = function (e) {
+          list.removeChild(listItem);
+
+
+        }
+
+        listEdit.onclick = function (e) {
+          listItem.removeChild(listBtn);
+          const listSave = document.createElement('button')
+          let input = document.createElement('input');
+          input.value = listItem.childNodes[0].textContent
+          listItem.appendChild(input);
+          listItem.removeChild(listEdit);
+          listItem.removeChild(listText);
+          listItem.appendChild(listBtn);
+          listBtn.textContent = 'Delete';
+          listItem.appendChild(listSave);
+          listSave.textContent = 'Save';
+
+          listSave.onclick = function (e) {
+            listItem.removeChild(listBtn);
+            listItem.appendChild(listText);
+            listText.textContent = input.value;
+            listItem.removeChild(input);
+            listItem.removeChild(listSave);
+            listItem.appendChild(listBtn);
+            listItem.appendChild(listEdit);
+            listEdit.textContent = 'Edit';
+
+          }
+
+        }
+
+        input.focus();
+
+
+      } else {
+        document.getElementById("addWish").classList.add("error")
+        setTimeout(function () {
+          document.getElementById("addWish").classList.remove('error');
+        }, 300);
+        return false;
+      }
+    }
+  </script>
+</body>
+
+</html>
