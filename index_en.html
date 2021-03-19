@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
+   
+    <title>Document</title>
+    <style>
+        body{
+            font-family: 'Roboto';
+        }
+        .modal {
+        display: none; 
+        position: fixed;
+        z-index: 1; 
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgb(0,0,0); 
+        background-color: rgba(0,0,0,0.4); 
+        }
+
+        .modal-content {
+        background-color: #fefefe;
+        margin: 80px auto; 
+        padding:0 20px 20px 20px;
+        border: 1px solid #888;
+        width: 50%;
+        position: relative;
+        text-align: center;
+        }
+
+        .close {
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+        margin-top: 12px;
+        }
+
+        .close:hover,
+        .close:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+        }
+        .mainImg{
+            width: 90%;
+            margin: auto;
+        }
+        .text{
+            text-align: justify;
+            font-size: 18px;
+            padding: 0 15px;
+            text-indent: 20px;
+            margin: 0;
+        }
+        
+        .text b{
+            font-size: 20px;
+        }
+        .endLine{
+            font-weight: bold;
+            font-style: italic;
+            text-indent: 0px;
+            margin-bottom: 40px;
+            padding: 0 50px;
+        
+        }
+        .firstLine{
+            font-weight: bold;
+            font-style: italic;
+            text-align: center;
+            margin-top: 10px;
+        }
+        .name{
+            display: flex;
+            width: 100%;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        .name span{
+            white-space: nowrap;
+        }
+        @media (max-width: 768px){
+            .modal-content {
+                margin: 40px auto; 
+                width: 85%;
+            }
+            .text{
+            font-size: 14px;
+            padding: 0 15px;
+            text-indent: 10px;
+            }
+            .text b{
+            font-size: 16px;
+           }
+        }
+
+    </style>
+</head>
+<body>
+    <div id="myModal" class="modal">
+    <div class="modal-content">  
+        <span class="close">&times;</span>
+        <img src="main.jpg" class="mainImg" alt="">
+        <p class="text firstLine"> Dear colleagues and partners!<br> Dear students!</p>
+        <p class="text">I congratulate you on the arrival of spring, on the holiday of Nauryz! Let this day of spring renewal bring prosperity, mutual understanding and harmony in everything to your homes!</p>
+        <p class="text">The history of this wonderful holiday has a difficult fate. Nauryz was celebrated for many centuries, but in 1926 it was canceled and was not held for more than 60 years. For the first time after many years of oblivion, Nauryz gained official recognition on March 15, 1991, when the First President of the country, N. A. Nazarbayev, by his Decree established Nauryz as a state holiday. This year we celebrate both the anniversary of Kazakhstan's Independence and the anniversary of Nauryz's return to the Kazakh land. And in 2009, UNESCO included Nauryz in the Representative List of the Intangible Cultural Heritage of Humanity.</p>
+        <p class="text">The holiday of Nauryz itself contains the most pressing problems of our time – the unity of man and nature, harmony with the surrounding world, respect and love for loved ones. In the soul of every person, the brightest feelings manifest themselves, and each of us feels proud to live in such a large and friendly country.</p>
+        <p class="text">Our university is also a small, but very friendly and strong «country» too. At this difficult time, we are working closely together, implementing important tasks for the further development of our university. The teaching staff of the university actively introduces new technologies into the educational process, and our students have accepted the new format of training as another way of self-development. The introduction of innovative technologies in the educational process, highly professional technical support allows us to continue working, regardless of emergency circumstances.</p>
+        <p class="text"> On this wonderful holiday, I wish a peaceful sky over your head, good health and well-being to every family!</p>
+        <br> 
+       <p class="text endLine">
+        With best wishes
+            <br>
+            Chairman of the Management Board,
+            <br>
+               <span class="name"> 
+                   <span> Rector of JSC «IITU»</span>			
+                   <span> R.K. Uskenbayeva </span>
+                </span>
+        </p>
+    </div>
+
+    </div>
+
+    <script>
+        var modal = document.getElementById("myModal");
+        var span = document.getElementsByClassName("close")[0];
+        modal.style.display = "block";
+        span.onclick = function() {
+        modal.style.display = "none";
+        }
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+</body>
+</html>
